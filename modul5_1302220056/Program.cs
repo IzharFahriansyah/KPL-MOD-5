@@ -7,26 +7,42 @@ using System.Threading.Tasks;
 namespace modul5_1302220056
 {
 
-    class Penjumlahan<T>
+   internal class Program
     {
-        public dynamic JumlahTigaAngka<T>(T angka1, T angka2, T angka3)
+        class SimpleDataBase<T>
         {
-            dynamic a = angka1;
-            dynamic b = angka2;
-            dynamic c = angka3;
+            List <T> storedData { get; set; }
+            List <DateTime> inputDates { get; set; }
+            
 
-            return a + b + c;
+            public SimpleDataBase()
+            {
+                storedData = new List <T>();
+                inputDates = new List <DateTime>();
+            }
+            public void AddNewData(T list)
+            {
+                storedData.Add(list);
+                inputDates.Add(DateTime.Now);
+            }
+            public void printAllData()
+            {
+                for(int i = 0; i < storedData.Count; i++)
+                {
+                    Console.WriteLine("Data " + i + " berisi : " + storedData[i] + " yang disimpan pada waktu " + inputDates[i]);
+                }
+            }
         }
-    }
+      
 
 
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Penjumlahan<int> JumlahTigaAngka = new Penjumlahan<int>();
-
-            Console.WriteLine(JumlahTigaAngka.JumlahTigaAngka(13, 02, 22));
-        }
+            static void Main(string[] args)
+            {
+                SimpleDataBase<int> Data = new SimpleDataBase<int>();
+                Data.AddNewData(12); Data.AddNewData(34); Data.AddNewData(56);
+                Data.printAllData();
+                Console.ReadLine();
+            }
+      
     }
 }
